@@ -17,8 +17,12 @@ public class ThreadTest {
     public String test() {
         System.out.println("--------------------[Testing]--------------------");
         MyData data = new MyData();
-        new Thread(new Consumer(data)).start();
-        new Thread(new Consumer(data)).start();
+        for(int i=0;i<10;i++) {
+            new Thread(new Producer(data)).start();
+        }
+        for(int i=0;i<10;i++) {
+            new Thread(new Consumer(data)).start();
+        }
         System.out.println("Main thread is end");
         return "Success!";
     }

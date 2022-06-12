@@ -7,7 +7,7 @@ package com.example.task.Thread.waitnotifynotifyAll;
  **/
 public class Producer implements Runnable {
 
-    private MyData data;
+    private final MyData data;
 
     public Producer(MyData data) {
         this.data = data;
@@ -18,14 +18,15 @@ public class Producer implements Runnable {
             synchronized (data) {
                 while (data.getData() > 0) {
                     System.out.println("【生产者线程等待...】目前还有 " + data.getData() + " 个面包，等待消费者线程消费...");
-                    wait();
+                    data.wait();
                 }
                 data.add();
                 System.out.println("生产出了1个面包，可以消费了," + "剩余: " + data.getData() + " 个面包");
-                //this.notifyAll();
-                notify();
+                //data.notifyAll();
+                data.notify();
             }
         } catch (Exception e) {
+            System.out.println(e);
         }
     }
 

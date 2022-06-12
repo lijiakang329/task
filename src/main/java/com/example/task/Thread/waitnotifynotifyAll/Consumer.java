@@ -7,7 +7,7 @@ package com.example.task.Thread.waitnotifynotifyAll;
  **/
 public class Consumer implements Runnable {
 
-    private MyData data;
+    private final MyData data;
 
     public Consumer(MyData data) {
         this.data = data;
@@ -16,17 +16,18 @@ public class Consumer implements Runnable {
     @Override
     public void run() {
         try {
-            synchronized (this) {
+            synchronized (data) {
                 while (data.getData() == 0) {
                     System.out.println("【消费者线程等待...】没有面包了，等待消费者生产面包...");
-                    wait();
+                    data.wait();
                 }
                 data.del();
                 System.out.println("消费了1个面包，可以生产了，" + "剩余: " + data.getData() + " 个面包");
-                //this.notifyAll();
-                notify();
+                //data.notifyAll();
+                data.notify();
             }
         } catch (Exception e) {
+            System.out.println(e);
         }
     }
 
