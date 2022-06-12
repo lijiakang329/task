@@ -1,4 +1,4 @@
-package com.example.task.Thread.waitnotifynotifyAll;
+package com.example.task.Thread.waitnotifynotifyAll.producerandconsumer;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;

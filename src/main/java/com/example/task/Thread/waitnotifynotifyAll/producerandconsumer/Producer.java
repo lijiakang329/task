@@ -1,4 +1,4 @@
-package com.example.task.Thread.waitnotifynotifyAll;
+package com.example.task.Thread.waitnotifynotifyAll.producerandconsumer;
 
 /**
  * @description: 生产者

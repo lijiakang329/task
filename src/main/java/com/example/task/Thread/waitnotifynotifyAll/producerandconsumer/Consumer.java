@@ -1,4 +1,4 @@
-package com.example.task.Thread.waitnotifynotifyAll;
+package com.example.task.Thread.waitnotifynotifyAll.producerandconsumer;
 
 /**
  * @description: 消费者
@@ -13,6 +13,15 @@ public class Consumer implements Runnable {
         this.data = data;
     }
 
+    /**
+     * 所有等待的线程都有相同的条件谓词。
+     * 所有线程在唤醒后执行相同的一组操作。
+     * 只需一个线程即可在收到通知时唤醒。
+     * @Param: @param
+     * @return: void
+     * @Author: jiakang
+     * @Date: 2022/6/12
+     */
     @Override
     public void run() {
         try {

@@ -1,4 +1,4 @@
-package com.example.task.Thread.waitnotifynotifyAll;
+package com.example.task.Thread.waitnotifynotifyAll.producerandconsumer;
 
 /**
  * @description: 存储多线程共享变量
