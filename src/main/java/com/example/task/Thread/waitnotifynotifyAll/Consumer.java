@@ -16,15 +16,15 @@ public class Consumer implements Runnable {
     @Override
     public void run() {
         try {
-            synchronized (data) {
+            synchronized (this) {
                 while (data.getData() == 0) {
-                    System.out.println("没有面包了，等待消费者生产面包...");
-                    this.wait();
+                    System.out.println("【消费者线程等待...】没有面包了，等待消费者生产面包...");
+                    wait();
                 }
-                Thread.sleep(1000);
                 data.del();
                 System.out.println("消费了1个面包，可以生产了，" + "剩余: " + data.getData() + " 个面包");
-                this.notifyAll();
+                //this.notifyAll();
+                notify();
             }
         } catch (Exception e) {
         }

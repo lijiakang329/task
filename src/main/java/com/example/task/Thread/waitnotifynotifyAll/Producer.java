@@ -14,17 +14,16 @@ public class Producer implements Runnable {
     }
 
     public void run() {
-        System.out.println("开始了...");
         try {
             synchronized (data) {
                 while (data.getData() > 0) {
-                    System.out.println("目前还有 " + data.getData() + " 个面包，等待消费者线程消费...");
-                    this.wait();
+                    System.out.println("【生产者线程等待...】目前还有 " + data.getData() + " 个面包，等待消费者线程消费...");
+                    wait();
                 }
-                Thread.sleep(100);
                 data.add();
                 System.out.println("生产出了1个面包，可以消费了," + "剩余: " + data.getData() + " 个面包");
-                this.notifyAll();
+                //this.notifyAll();
+                notify();
             }
         } catch (Exception e) {
         }
