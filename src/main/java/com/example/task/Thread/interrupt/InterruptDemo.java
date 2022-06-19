@@ -17,6 +17,7 @@ public class InterruptDemo {
     @GetMapping("/interrupt")
     public String test() {
         i = 0;
+        isInterrupt = false;
         Thread t1 = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -26,6 +27,7 @@ public class InterruptDemo {
                         while (j == 10){
                             System.out.println("j: " + j);
                             isInterrupt = true;
+                            break;
                         }
                     }
                 }
@@ -40,8 +42,14 @@ public class InterruptDemo {
                 }
             }
         });
-        t1.start();
-        t2.start();
+        try {
+            t1.start();
+            t1.join();
+            t2.start();
+            t2.join();
+        }catch (Exception e){
+
+        }
         return "sucess";
     }
 }
